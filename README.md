@@ -275,7 +275,6 @@ const PolicyDateInput = () => {};
 ### How to define functional component with typescript
 Define component props and state as type.
 ```tsx
-// Declaring type of props - see "Typing Component Props" for more examples
 type AppProps = {
   message: string;
 };
