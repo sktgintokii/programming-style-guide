@@ -3,7 +3,7 @@
 # Table of contents
 - [Table of contents](#table-of-contents)
 - [General](#general)
-    + [Avoid literals, e.g. string, number](#avoid-literals--eg-string--number)
+    + [Avoid literals, e.g. string, number](#avoid-literals-eg-string-number)
     + [Use index file is possible](#use-index-file-is-possible)
     + [File naming](#file-naming)
     + [BEM css class naming](#bem-css-class-naming)
@@ -17,7 +17,7 @@
     + [Use spell-checking plugin](#use-spell-checking-plugin)
     + [Liskov substitution](#liskov-substitution)
 - [Typescript](#typescript)
-    + [Functional component](#functional-component)
+    + [How to define functional component with typescript](#how-to-define-functional-component-with-typescript)
     + [Useful types](#useful-types)
 - [References](#references)
 
