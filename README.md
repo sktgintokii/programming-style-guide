@@ -16,6 +16,11 @@
     + [Encapsulate API call](#encapsulate-api-call)
     + [Use spell-checking plugin](#use-spell-checking-plugin)
     + [Liskov substitution](#liskov-substitution)
+- [Styling](#styling-and-css)
+    + [CSS Avoid !important](#css-avoid-!important)
+    + [Component avoid Margin or Outer Padding](#component-avoid-margin-or-outer-padding)
+    + [Component avoid Generic Selector](#component-avoid-generic-selector)
+    + [Encourage to use Flex & Grid](#encourage-to-use-flex-&-grid)
 - [Typescript](#typescript)
     + [How to define functional component with typescript](#how-to-define-functional-component-with-typescript)
     + [Useful types](#useful-types)
@@ -270,6 +275,83 @@ const DOBInput = () => {};
 const PolicyDateInput = () => {};
 ```
 
+# Styling and CSS
+### CSS Avoid !important
+Use more specific rules. By indicating one or more elements before the element you're selecting, the rule becomes more specific and gets higher priority:
+```
+<div id="test">
+  <span>Text</span>
+</div>
+```
+```
+div#test span { color: green; }
+div span { color: blue; }
+span { color: red; }
+```
+
+### Component avoid Margin or Outer Padding
+Potential Issue:
+Providing a default margin to a generic class may result in styling conflict with other component.
+Designer Zeplin diagram always introduce gap directly to the component border.
+![styling-margin-html](./images/styling-margin-html.png "styling-margin-html")
+![styling-margin-zeplin](./images/styling-margin-zeplin.png "styling-margin-zeplin")
+Suggestion:
+The gap betweens components to be determined by their parent.
+
+### Component avoid Generic Selector
+Potential Issue:
+component:
+```
+<div className="xx-wraper">
+  <span className="emma-stylesheet-span">foo</span>
+  {children}
+</div>
+```
+css:
+```
+.xx-wrapper {
+  span: {
+    line-height: 2rem;
+  }
+
+  .emma-stylesheet-span {
+    font-weight: bold;
+  }
+}
+```
+Suggestion:
+component
+```
+<div className="xx-wraper">
+  <span className="emma-stylesheet-span xx-wrapper__span">foo</span>
+  {children}
+</div>
+```
+css:
+```
+.xx-wrapper {
+  &__span {
+    line-height: 2rem;
+    font-weight: bold;
+  }
+}
+```
+
+### Encourage to use Flex & Grid
+Potential Issue:
+```
+width: 50% + text-align: center;
+```
+Suggestion:
+```
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-item: center;
+```
+https://css-tricks.com/snippets/css/a-guide-to-flexbox
+https://css-tricks.com/snippets/css/complete-guide-grid
+
 # Typescript
 
 ### How to define functional component with typescript
@@ -343,3 +425,6 @@ export type AppProps = {
 - [Presentational and Container Components - Dan Abramov](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0)
 - [Google TypeScript Style Guide](https://google.github.io/styleguide/tsguide.html)
 - [Typescript - Reference - Enums](https://www.typescriptlang.org/docs/handbook/enums.html)
+- [Instead of using !important, consider](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity)
+- [A Complete Guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+- [A Complete Guide to Grid](https://css-tricks.com/snippets/css/complete-guide-grid/)
