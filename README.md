@@ -298,6 +298,25 @@ Designer Zeplin diagram always introduce gap directly to the component border.
 Suggestion:
 The gap betweens components to be determined by their parent.
 
+### Avoid margin bottom and margin right for sibling elements
+Overlapped margins will be collapsed ((See more)[https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Mastering_margin_collapsing]).
+and caused unexpected stylings. The way to deal with this is to either keep the margin of previous sibling element or the preceding one.
+As back in the days, there was no css selector for previous sibling element, it favored keeping preceding siblings, i.e. `margin-left`, `margin-top`, so it became the convention for margins.
+```scss
+// Good
+.sibling {
+    margin-left: 8px;
+    margin-top: 8px;
+}
+
+// Bad
+.sibling {
+    margin-right: 8px;
+    margin-bottom: 8px;
+}
+```
+
+
 ### Component avoid Generic Selector
 Potential Issue:
 component:
